@@ -1,1 +1,28 @@
+package model;
+
+class Task extends AbstractTask {
+    private String status;
+
+    public Task(String id, String name, String desc, String status) {
+        super(id, name, desc);
+        this.status = status;
+    }
+
+    @Override
+    public String getStatus() { return status; }
+    @Override
+    public void setStatus(String status) { this.status = status; }
+}
+
+class TimedTask extends Task {
+    private int estimatedMinutes;
+
+    public TimedTask(String id, String name, String desc, String status, int mins) {
+        super(id, name, desc, status);
+        this.estimatedMinutes = mins;
+    }
+    
+    public int getEstimatedMinutes() { return estimatedMinutes; }
+    public void setEstimatedMinutes(int mins) { this.estimatedMinutes = mins; }
+}
 
