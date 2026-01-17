@@ -1,1 +1,18 @@
+package controller;
+
+import model.AbstractTask;
+import java.util.ArrayList;
+import java.util.List;
+
+public class TaskManager {
+    private List<AbstractTask> taskList = new ArrayList<>();
+
+    public void addTask(AbstractTask task) {
+        taskList.add(task);
+    }
+
+    public List<AbstractTask> getAllTasks() {
+        return taskList;
+    }
+}
 
