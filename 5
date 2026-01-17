@@ -1,1 +1,44 @@
+package ui;
 
+import controller.TaskManager;
+import model.Task;
+import javax.swing.*;
+import java.awt.*;
+
+class TaskForm extends JFrame {
+    public TaskForm(TaskManager manager, TaskListViewer parent) {
+        setTitle("Add Task");
+        setSize(300, 300);
+        setLayout(new GridLayout(5, 2));
+
+        JTextField txtName = new JTextField();
+        JTextArea txtDesc = new JTextArea();
+        JComboBox<String> cbStatus = new JComboBox<>(new String[]{"Not Started", "Ongoing", "Completed"});
+        JButton btnSave = new JButton("Save Task");
+
+        add(new JLabel("Task Name:")); add(txtName);
+        add(new JLabel("Description:")); add(new JScrollPane(txtDesc));
+        add(new JLabel("Status:")); add(cbStatus);
+        add(new JLabel("")); add(btnSave);
+
+        btnSave.addActionListener(e -> {
+            if(txtName.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Please fill in Task Name!");
+                return;
+            }
+            String id = "T-" + (manager.getAllTasks().size() + 1);
+            Task t = new Task(id, txtName.getText(), txtDesc.getText(), (String)cbStatus.getSelectedItem());
+            manager.addTask(t);
+            parent.refreshTable();
+            dispose();
+        });
+    }
+}
+
+public class MainApp {
+    public static void main(String[] args) {
+        TaskManager manager = new TaskManager();
+        TaskListViewer gui = new TaskListViewer(manager);
+        gui.setVisible(true);
+    }
+}
