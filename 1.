@@ -1,1 +1,22 @@
+package model;
 
+public abstract class AbstractTask {
+    protected String taskId;
+    protected String taskName;
+    protected String taskDescription;
+
+    public AbstractTask() {}
+
+    public AbstractTask(String taskId, String taskName, String taskDescription) {
+        this.taskId = taskId;
+        this.taskName = taskName;
+        this.taskDescription = taskDescription;
+    }
+
+    public abstract String getStatus();
+    public abstract void setStatus(String status);
+
+    public String getTaskId() { return taskId; }
+    public String getTaskName() { return taskName; }
+    public String getTaskDescription() { return taskDescription; }
+}
